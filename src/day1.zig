@@ -5,6 +5,25 @@ pub fn parseLine(input: []const u8) !i32 {
     return (try std.fmt.parseInt(i32, input[1..], 10)) * dir;
 }
 
+pub fn part1(input: []const u8) !usize {
+    var val: i32 = 50;
+    var counter: usize = 0;
+    var iter = std.mem.tokenizeScalar(u8, input, '\n');
+    while (iter.next()) |line| {
+        const output: i32 = try parseLine(line);
+        const sum = val + output;
+        val = @rem(sum, 100);
+        if (val < 0) {
+            val = 100 + val;
+        }
+        if (val == 0) {
+            counter += 1;
+        }
+        std.log.info("After '{s}' the value is {d} (count: {d}", .{ line, val, counter });
+    }
+    return counter;
+}
+
 pub fn part2(input: []const u8) !usize {
     var val: i32 = 50;
     var counter: usize = 0;
@@ -25,25 +44,6 @@ pub fn part2(input: []const u8) !usize {
             val = 100 + val;
         }
         counter += clicks;
-    }
-    return counter;
-}
-
-pub fn part1(input: []const u8) !usize {
-    var val: i32 = 50;
-    var counter: usize = 0;
-    var iter = std.mem.tokenizeScalar(u8, input, '\n');
-    while (iter.next()) |line| {
-        const output: i32 = try parseLine(line);
-        const sum = val + output;
-        val = @rem(sum, 100);
-        if (val < 0) {
-            val = 100 + val;
-        }
-        if (val == 0) {
-            counter += 1;
-        }
-        std.log.info("After '{s}' the value is {d} (count: {d}", .{ line, val, counter });
     }
     return counter;
 }
