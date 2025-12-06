@@ -24,7 +24,7 @@ pub fn main() !void {
     std.log.info("Day 2 Part 2 - Final Answer: {d}, {d}ms", .{ day2_part1_output, end_time - start_time });
 
     start_time = std.time.microTimestamp();
-    const day3_part1_output = try day3.part1(day3_inp);
+    const day3_part1_output = try day3.part2(day3_inp);
     end_time = std.time.microTimestamp();
-    std.log.info("Day 3 Part 1 - Final Answer: {d}, {d}μs", .{ day3_part1_output, end_time - start_time });
+    std.log.info("Day 3 Part 2 - Final Answer: {d}, {d}μs", .{ day3_part1_output, end_time - start_time });
 }
